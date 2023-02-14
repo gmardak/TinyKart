@@ -56,8 +56,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
-static void MX_TIM2_Init(void);
 static void MX_TIM1_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -107,8 +107,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
-  MX_TIM2_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
@@ -123,14 +123,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  while(cnt<11){
-		  TIM2->CCR1 = cnt;
-		  cnt--;
-		  HAL_Delay(100);
-	  }
+//	  while(cnt<19){
+//		  TIM2->CCR1 = cnt;
+//		  cnt++;
+//		  HAL_Delay(100);
+//	  }
 	  while(cnt>10){
 	  		  TIM2->CCR1 = cnt;
-	  		  cnt++;
+	  		  cnt--;
 	  		  HAL_Delay(100);
 	  }
   }
@@ -217,9 +217,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 5399;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = 99;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
